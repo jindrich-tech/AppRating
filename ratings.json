@@ -1,0 +1,290 @@
+[
+  {
+    "date": "2026-03-19",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2,
+    "userRatingCount": 120
+  },
+  {
+    "date": "2026-03-20",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.01,
+    "userRatingCount": 132
+  },
+  {
+    "date": "2026-03-21",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.02,
+    "userRatingCount": 144
+  },
+  {
+    "date": "2026-03-22",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.03,
+    "userRatingCount": 156
+  },
+  {
+    "date": "2026-03-23",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.04,
+    "userRatingCount": 168
+  },
+  {
+    "date": "2026-03-24",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.05,
+    "userRatingCount": 180
+  },
+  {
+    "date": "2026-03-25",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.06,
+    "userRatingCount": 192
+  },
+  {
+    "date": "2026-03-26",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.15,
+    "userRatingCount": 210
+  },
+  {
+    "date": "2026-03-27",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.16,
+    "userRatingCount": 222
+  },
+  {
+    "date": "2026-03-28",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.17,
+    "userRatingCount": 234
+  },
+  {
+    "date": "2026-03-29",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.18,
+    "userRatingCount": 246
+  },
+  {
+    "date": "2026-03-30",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.19,
+    "userRatingCount": 258
+  },
+  {
+    "date": "2026-03-31",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.2,
+    "userRatingCount": 270
+  },
+  {
+    "date": "2026-04-01",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.21,
+    "userRatingCount": 282
+  },
+  {
+    "date": "2026-04-02",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.3,
+    "userRatingCount": 300
+  },
+  {
+    "date": "2026-04-03",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.31,
+    "userRatingCount": 312
+  },
+  {
+    "date": "2026-04-04",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.32,
+    "userRatingCount": 324
+  },
+  {
+    "date": "2026-04-05",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.33,
+    "userRatingCount": 336
+  },
+  {
+    "date": "2026-04-06",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.34,
+    "userRatingCount": 348
+  },
+  {
+    "date": "2026-04-07",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.35,
+    "userRatingCount": 360
+  },
+  {
+    "date": "2026-04-08",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.36,
+    "userRatingCount": 372
+  },
+  {
+    "date": "2026-04-09",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.45,
+    "userRatingCount": 390
+  },
+  {
+    "date": "2026-04-10",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.46,
+    "userRatingCount": 402
+  },
+  {
+    "date": "2026-04-11",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.47,
+    "userRatingCount": 414
+  },
+  {
+    "date": "2026-04-12",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.48,
+    "userRatingCount": 426
+  },
+  {
+    "date": "2026-04-13",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.49,
+    "userRatingCount": 438
+  },
+  {
+    "date": "2026-04-14",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.5,
+    "userRatingCount": 450
+  },
+  {
+    "date": "2026-04-15",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.51,
+    "userRatingCount": 462
+  },
+  {
+    "date": "2026-04-16",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.6,
+    "userRatingCount": 480
+  },
+  {
+    "date": "2026-04-17",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.61,
+    "userRatingCount": 492
+  },
+  {
+    "date": "2026-04-18",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.62,
+    "userRatingCount": 504
+  },
+  {
+    "date": "2026-04-19",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.63,
+    "userRatingCount": 516
+  },
+  {
+    "date": "2026-04-20",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.64,
+    "userRatingCount": 528
+  },
+  {
+    "date": "2026-04-21",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.65,
+    "userRatingCount": 540
+  },
+  {
+    "date": "2026-04-22",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.66,
+    "userRatingCount": 552
+  },
+  {
+    "date": "2026-04-23",
+    "appId": 1234567890,
+    "appName": "Sample App",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/aa/bb/cc/aabbccdd-1122-3344-5566-77889900/Icon-0-0-1x_U007emarketing-0-10-0-85-220.png/100x100bb.jpg",
+    "averageUserRating": 2.75,
+    "userRatingCount": 570
+  }
+]

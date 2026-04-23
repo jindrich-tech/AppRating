@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Track and visualize iOS App Store ratings over time."
+    />
+    <title>AppRating Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script src="./app.js" type="module" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="page-header">
+      <div>
+        <h1>AppRating</h1>
+        <p class="subtitle">30-day App Store trend dashboard</p>
+      </div>
+    </header>
+
+    <main id="main-content" class="container" aria-live="polite">
+      <section class="panel app-overview" aria-label="App overview">
+        <img
+          id="app-icon"
+          class="app-icon"
+          src=""
+          alt=""
+          width="100"
+          height="100"
+          loading="lazy"
+        />
+
+        <div class="app-meta">
+          <h2 id="app-name">Loading app details...</h2>
+          <dl class="metrics-list">
+            <div>
+              <dt>Latest average rating</dt>
+              <dd id="latest-rating">—</dd>
+            </div>
+            <div>
+              <dt>Latest rating count</dt>
+              <dd id="latest-count">—</dd>
+            </div>
+            <div>
+              <dt>Last updated</dt>
+              <dd id="last-updated">—</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="panel summary-panel" aria-label="Trend summary">
+        <h2>Change summary</h2>
+        <div class="summary-grid">
+          <article class="summary-card" aria-label="7 day rating change">
+            <h3>7-day rating</h3>
+            <p id="rating-change-7d" class="summary-value">—</p>
+          </article>
+
+          <article class="summary-card" aria-label="30 day rating change">
+            <h3>30-day rating</h3>
+            <p id="rating-change-30d" class="summary-value">—</p>
+          </article>
+
+          <article class="summary-card" aria-label="7 day rating count change">
+            <h3>7-day count</h3>
+            <p id="count-change-7d" class="summary-value">—</p>
+          </article>
+
+          <article class="summary-card" aria-label="30 day rating count change">
+            <h3>30-day count</h3>
+            <p id="count-change-30d" class="summary-value">—</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel chart-panel" aria-label="Rating charts">
+        <div class="chart-header">
+          <h2 id="chart-title">Rating trend</h2>
+          <div class="toggle-group" role="tablist" aria-label="Chart view options">
+            <button
+              id="show-rating"
+              class="toggle-button is-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="rating-chart-wrapper"
+              type="button"
+            >
+              Average rating
+            </button>
+            <button
+              id="show-count"
+              class="toggle-button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="rating-chart-wrapper"
+              type="button"
+            >
+              Rating count
+            </button>
+          </div>
+        </div>
+
+        <div id="chart-empty-state" class="empty-state hidden" role="status"></div>
+        <div id="rating-chart-wrapper" class="chart-wrapper" aria-label="Trend chart">
+          <canvas id="rating-chart" aria-label="App rating trend line chart"></canvas>
+        </div>
+      </section>
+
+      <section
+        id="error-banner"
+        class="panel error-banner hidden"
+        role="alert"
+        aria-live="assertive"
+      ></section>
+    </main>
+  </body>
+</html>
