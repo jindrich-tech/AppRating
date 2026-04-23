@@ -50,7 +50,7 @@ function normalizeAndSort(entries) {
 }
 
 async function fetchLatestRating(appId) {
-  const endpoint = `https://itunes.apple.com/lookup?id=${encodeURIComponent(appId)}`;
+  const endpoint = `https://itunes.apple.com/lookup?country=cz&id=${encodeURIComponent(appId)}`;
   const response = await fetch(endpoint, {
     headers: {
       Accept: 'application/json'
