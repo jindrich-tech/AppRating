@@ -1,9 +1,8 @@
 name: Update App Ratings
 
 on:
-  push:
   schedule:
-    - cron: '22 9 * * *'
+    - cron: '20 9 * * *'
   workflow_dispatch:
 
 permissions:
