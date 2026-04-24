@@ -2,7 +2,7 @@ name: Cron Test
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '26,30,35 * * * *'
   workflow_dispatch:
 
 jobs:
