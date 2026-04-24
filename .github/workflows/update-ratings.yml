@@ -2,7 +2,6 @@ name: Update App Ratings
 
 on:
   schedule:
-    # Runs daily at 06:15 UTC
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
@@ -17,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js (LTS)
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
+          node-version: 20
 
       - name: Fetch latest App Store rating snapshot
         env:
