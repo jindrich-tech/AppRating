@@ -1,6 +1,7 @@
 name: Update App Ratings
 
 on:
+  push:
   schedule:
     - cron: '5 9 * * *'
   workflow_dispatch:
