@@ -172,6 +172,8 @@ function renderChart(mode = 'rating') {
       interaction: { mode: 'index', intersect: false },
       scales: {
         y: {
+          min: mode === 'rating' ? 0 : undefined,
+          max: mode === 'rating' ? 5 : undefined,
           ticks: {
             callback(value) {
               return mode === 'count' ? numberFormat.format(value) : decimalFormat.format(value);
