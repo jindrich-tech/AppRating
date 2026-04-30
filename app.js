@@ -182,7 +182,7 @@ function renderChart(mode = 'rating') {
         }
       },
       plugins: {
-        legend: { labels: { color: '#e5e7eb' } },
+        legend: { display: false },
         tooltip: {
           callbacks: {
             label(context) {
