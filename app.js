@@ -11,6 +11,7 @@ const CONFIG = {
 const numberFormat = new Intl.NumberFormat('en-US');
 const decimalFormat = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const dateFormat = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' });
+const axisDateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 
 const el = {
   appIcon: document.getElementById('app-icon'),
@@ -109,9 +110,19 @@ function parseRatings(raw) {
   return normalized.sort((a, b) => a.date.localeCompare(b.date));
 }
 
-function formatUtcDate(value) {
+function parseUtcDate(value) {
   const date = new Date(`${value}T00:00:00Z`);
-  return Number.isNaN(date.valueOf()) ? value : dateFormat.format(date);
+  return Number.isNaN(date.valueOf()) ? null : date;
+}
+
+function formatUtcDate(value) {
+  const date = parseUtcDate(value);
+  return date ? dateFormat.format(date) : value;
+}
+
+function formatAxisDate(value) {
+  const date = parseUtcDate(value);
+  return date ? axisDateFormat.format(date) : value;
 }
 
 function updateHeader(data) {
@@ -125,7 +136,7 @@ function updateHeader(data) {
 }
 
 function buildDatasets(mode) {
-  const labels = latestData.map((entry) => formatUtcDate(entry.date));
+  const labels = latestData.map((entry) => formatAxisDate(entry.date));
   if (mode === 'count') {
     return {
       labels,
