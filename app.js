@@ -183,7 +183,7 @@ function renderChart(mode = 'rating') {
       interaction: { mode: 'index', intersect: false },
       scales: {
         y: {
-          min: mode === 'count' ? 1500 : 0,
+          min: mode === 'count' ? 1600 : 0,
           max: mode === 'rating' ? 5 : undefined,
           ticks: {
             callback(value) {
