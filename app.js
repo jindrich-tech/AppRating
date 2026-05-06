@@ -1,5 +1,5 @@
 const CONFIG = {
-  dashboardTitle: 'App Store Rating Trend (CZ - Last 30 Days)',
+  dashboardTitle: 'App Store Rating Trend (Last 30 Days)',
   chartColors: {
     ratingLine: '#22c55e',
     ratingFill: 'rgba(34, 197, 94, 0.18)',
