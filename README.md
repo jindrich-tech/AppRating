@@ -1,6 +1,6 @@
 # AppRating
 
-AppRating is a lightweight GitHub Pages dashboard that tracks one iOS app's public App Store rating metrics over time.
+AppRating is a lightweight GitHub Pages dashboard that tracks one iOS app's public App Store rating metrics over time, with optional Google Play data collection.
 
 It uses:
 - **Static frontend** (HTML/CSS/vanilla JS + Chart.js)
@@ -14,7 +14,9 @@ No backend server is required.
 ## Quick start
 
 1. Fork or create a repository with these project files.
-2. Set your app ID in GitHub Actions secrets as `APPLE_APP_ID` (example: `1234567890`).
+2. Set your app identifiers in GitHub Actions secrets:
+   - `APPLE_APP_ID` (example: `1234567890`)
+   - `GOOGLE_PLAY_PACKAGE_NAME` (example: `com.example.app`)
 3. Enable the workflow in **Actions**.
 4. Run **Update App Ratings** once via **Run workflow**.
 5. Enable GitHub Pages from the repository root.
@@ -24,49 +26,54 @@ No backend server is required.
 
 ## How it works
 
-- `scripts/fetch-rating.mjs` calls Apple's iTunes Lookup API using `APPLE_APP_ID`.
+- `scripts/fetch-rating.mjs` calls Apple's iTunes Lookup API with `country=cz` and `APPLE_APP_ID`.
+- The same script also fetches Google Play from:
+  `https://play.google.com/store/apps/details?id=...&hl=en&gl=CZ`
 - It upserts **one snapshot per UTC date** into `ratings.json`.
-- `.github/workflows/update-ratings.yml` runs daily and commits `ratings.json` only when changed.
+- `.github/workflows/rating-cron.yml` runs daily and commits `ratings.json` only when changed.
 - `index.html` + `app.js` loads `./ratings.json` and draws charts for the most recent 30 entries.
+
+Apple and Google Play both use Czech Republic storefront targeting (`cz` / `CZ`) in the current implementation.
 
 ### Historical data limitation
 
-App Store lookup returns current aggregate values, not historical daily values. That means historical trend data starts accumulating **from the day your workflow first runs**.
+Storefront APIs/pages return current aggregate values, not full historical daily values. Historical trend data starts accumulating from the day your workflow first runs.
+
+---
+
+## Hidden Google test mode
+
+Default URL remains Apple-only (production behavior):
+
+- `https://jindrich-tech.github.io/AppRating/`
+
+To show Apple + Google lines/cards for testing, open:
+
+- `https://jindrich-tech.github.io/AppRating/?google=on`
+
+When `?google=on` is not present, the UI intentionally shows only Apple values.
 
 ---
 
 ## Configuration
 
-### Set APPLE_APP_ID
+### Set APPLE_APP_ID and GOOGLE_PLAY_PACKAGE_NAME
 
-Recommended: set as repository secret.
+Recommended: set both as repository secrets.
 
 1. Go to **Settings → Secrets and variables → Actions**.
-2. Create a new **Repository secret**:
-   - Name: `APPLE_APP_ID`
-   - Value: your numeric iOS app ID
+2. Create two **Repository secrets**:
+   - `APPLE_APP_ID`: numeric iOS app ID
+   - `GOOGLE_PLAY_PACKAGE_NAME`: Android package name
 
-> You can also store it as a repository variable, but this workflow reads from secrets by default.
+### Google Play scraping note
 
-### Customize chart title and colors
+Google Play scraping is unofficial and depends on page markup. If Google changes HTML patterns, parser updates may be required.
 
-In `app.js`, update the `CONFIG` object near the top:
+If CZ-specific page data is unavailable or parsing fails, the script keeps Apple updates running and stores:
 
-- `dashboardTitle`
-- `chartColors.ratingLine`
-- `chartColors.ratingFill`
-- `chartColors.countLine`
-- `chartColors.countFill`
-
----
-
-## Enable GitHub Pages
-
-1. Open **Settings → Pages**.
-2. Under **Build and deployment**, set:
-   - **Source**: Deploy from a branch
-   - **Branch**: `main` (or your default branch), folder `/ (root)`
-3. Save, then wait for deployment.
+- `googleRating: null`
+- `googleCount: null`
 
 ---
 
@@ -74,29 +81,25 @@ In `app.js`, update the `CONFIG` object near the top:
 
 ### Frontend
 
-Serve the repository root with any static server (recommended to avoid local file CORS issues):
-
 ```bash
 python3 -m http.server 8080
 ```
 
-Open `http://localhost:8080`.
+Open:
+- `http://localhost:8080/` (Apple-only)
+- `http://localhost:8080/?google=on` (Apple + Google)
 
 ### Fetch script
 
-Run manually:
-
 ```bash
-APPLE_APP_ID=1234567890 node scripts/fetch-rating.mjs
+APPLE_APP_ID=1234567890 GOOGLE_PLAY_PACKAGE_NAME=com.example.app node scripts/fetch-rating.mjs
 ```
-
-This updates `ratings.json` for today's UTC date.
 
 ---
 
 ## Data format (`ratings.json`)
 
-`ratings.json` is an array sorted by date ascending. Each entry:
+`ratings.json` is an array sorted by date ascending. Each entry uses:
 
 - `date` (UTC, `YYYY-MM-DD`)
 - `appId`
@@ -104,8 +107,17 @@ This updates `ratings.json` for today's UTC date.
 - `iconUrl`
 - `averageUserRating`
 - `userRatingCount`
+- `googleRating` (`number` or `null`)
+- `googleCount` (`number` or `null`)
 
-The fetch script is idempotent for the current UTC day: if today's record exists, it is replaced.
+### Migration behavior
+
+Existing Apple-only history is preserved. During script runs, older entries are normalized by adding:
+
+- `googleRating: null`
+- `googleCount: null`
+
+No fake historical Google values are backfilled. Google history starts from first successful scrape.
 
 ---
 
@@ -116,7 +128,6 @@ The fetch script is idempotent for the current UTC day: if today's record exists
 - Confirm the workflow has run successfully at least once.
 - Check the Actions log for script errors.
 - Ensure `ratings.json` is valid JSON array format.
-- UI will show a friendly error if data is missing or malformed.
 
 ### 2) GitHub Action permission errors
 
@@ -133,10 +144,9 @@ The fetch script is idempotent for the current UTC day: if today's record exists
 
 - Verify `APPLE_APP_ID` is correct and numeric.
 - Some apps may not expose rating fields in all storefronts.
-- Re-run manually after confirming app is publicly available on the App Store.
 
----
+### 5) Google rating/count missing
 
-## Extending later
-
-This project is intentionally structured so it can be extended to support multiple apps later (for example, by storing separate JSON files per app or adding `appId` filtering in the frontend).
+- Verify `GOOGLE_PLAY_PACKAGE_NAME` is correct.
+- Google markup may have changed; parser patterns may need adjustment.
+- If Google fails, Apple updates continue by design.

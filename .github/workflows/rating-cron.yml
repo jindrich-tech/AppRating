@@ -24,6 +24,7 @@ jobs:
       - name: Fetch latest App Store rating snapshot
         env:
           APPLE_APP_ID: ${{ secrets.APPLE_APP_ID }}
+          GOOGLE_PLAY_PACKAGE_NAME: ${{ secrets.GOOGLE_PLAY_PACKAGE_NAME }}
         run: node ./scripts/fetch-rating.mjs
 
       - name: Commit and push ratings.json if changed

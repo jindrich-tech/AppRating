@@ -44,7 +44,9 @@ function normalizeAndSort(entries) {
       appName: entry.appName,
       iconUrl: entry.iconUrl,
       averageUserRating: entry.averageUserRating,
-      userRatingCount: entry.userRatingCount
+      userRatingCount: entry.userRatingCount,
+      googleRating: entry.googleRating ?? null,
+      googleCount: entry.googleCount ?? null
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 }
@@ -95,16 +97,84 @@ async function fetchLatestRating(appId) {
   };
 }
 
+function parseCompactNumber(text) {
+  const compact = text.replace(/,/g, '').trim();
+  const match = compact.match(/^(\d+(?:\.\d+)?)([KMB])?$/i);
+  if (!match) return null;
+
+  const base = Number.parseFloat(match[1]);
+  if (!Number.isFinite(base)) return null;
+
+  const suffix = (match[2] || '').toUpperCase();
+  const multipliers = { '': 1, K: 1_000, M: 1_000_000, B: 1_000_000_000 };
+  const multiplier = multipliers[suffix];
+  if (!multiplier) return null;
+
+  return Math.round(base * multiplier);
+}
+
+function extractGoogleRating(html) {
+  const match = html.match(/aria-label="Rated\s+([0-9]+(?:\.[0-9]+)?)\s+stars\s+out\s+of\s+five\s+stars"/i);
+  if (!match) return null;
+
+  const rating = Number.parseFloat(match[1]);
+  return Number.isFinite(rating) ? rating : null;
+}
+
+function extractGoogleCount(html) {
+  const reviewMatch = html.match(/>(\d+(?:[.,]\d+)?\s*[KMB]?)\s+reviews</i);
+  if (!reviewMatch) return null;
+
+  return parseCompactNumber(reviewMatch[1].replace(/\s+/g, ''));
+}
+
+async function fetchGooglePlaySnapshot(packageName) {
+  const endpoint = `https://play.google.com/store/apps/details?id=${encodeURIComponent(packageName)}&hl=en&gl=CZ`;
+  const response = await fetch(endpoint, {
+    headers: {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      Accept: 'text/html,application/xhtml+xml'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Google Play request failed with HTTP ${response.status}.`);
+  }
+
+  const html = await response.text();
+  const googleRating = extractGoogleRating(html);
+  const googleCount = extractGoogleCount(html);
+
+  return { googleRating, googleCount };
+}
+
 async function main() {
   const appId = process.env.APPLE_APP_ID;
   if (!appId) {
     throw new Error('Missing APPLE_APP_ID environment variable.');
   }
 
+  const googlePackageName = process.env.GOOGLE_PLAY_PACKAGE_NAME;
+  if (!googlePackageName) {
+    throw new Error('Missing GOOGLE_PLAY_PACKAGE_NAME environment variable.');
+  }
+
   const latest = await fetchLatestRating(appId);
   const today = getTodayUtcDate();
 
-  const existing = await loadExistingRatings();
+  let googleSnapshot = { googleRating: null, googleCount: null };
+  try {
+    googleSnapshot = await fetchGooglePlaySnapshot(googlePackageName);
+    if (googleSnapshot.googleRating === null || googleSnapshot.googleCount === null) {
+      console.warn('Google Play data could not be fully parsed for CZ (gl=CZ). Falling back to null values.');
+      googleSnapshot = { googleRating: null, googleCount: null };
+    }
+  } catch (error) {
+    console.warn(`Google Play scrape failed: ${error.message}`);
+  }
+
+  const existing = normalizeAndSort(await loadExistingRatings());
   const withoutToday = existing.filter((entry) => entry.date !== today);
 
   const snapshot = {
@@ -113,7 +183,9 @@ async function main() {
     appName: latest.trackName,
     iconUrl: latest.iconUrl,
     averageUserRating: latest.averageUserRating,
-    userRatingCount: latest.userRatingCount
+    userRatingCount: latest.userRatingCount,
+    googleRating: googleSnapshot.googleRating,
+    googleCount: googleSnapshot.googleCount
   };
 
   const updated = normalizeAndSort([...withoutToday, snapshot]);
