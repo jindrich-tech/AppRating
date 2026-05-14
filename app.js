@@ -201,8 +201,8 @@ function renderChart(mode = 'rating') {
           labels: {
             usePointStyle: true,
             pointStyle: 'line',
-            boxWidth: 36,
-            boxHeight: 4,
+            boxWidth: 18,
+            boxHeight: 3,
             padding: 12
           }
         },
