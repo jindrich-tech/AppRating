@@ -196,10 +196,10 @@ function updateSummaries(data) {
   };
 
   if (isGoogleMode) {
-    renderStoreSummaryPanel(document.querySelector('.summary-panel'), 'App Store Change Summary', appleChanges);
+    renderStoreSummaryPanel(document.querySelector('.summary-panel'), 'App Store change summary', appleChanges);
 
     const googlePanel = document.querySelector('.summary-panel').cloneNode(true);
-    renderStoreSummaryPanel(googlePanel, 'Google Play Change Summary', {
+    renderStoreSummaryPanel(googlePanel, 'Google Play change summary', {
       rating7d: computeChange(data, 7, 'googleRating'),
       rating30d: computeChange(data, 30, 'googleRating'),
       count7d: computeChange(data, 7, 'googleCount'),
