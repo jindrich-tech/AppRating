@@ -60,24 +60,14 @@ function updateSummaryValue(node, value, isCount = false) {
   if (value < 0) node.classList.add('is-negative');
 }
 
-function formatSummaryValue(value, isCount = false) {
-  if (value === null) return '—';
-  const sign = value > 0 ? '+' : value < 0 ? '-' : '';
-  const absValue = Math.abs(value);
-  return isCount ? `${sign}${numberFormat.format(absValue)}` : `${sign}${decimalFormat.format(absValue)}`;
-}
-
-function getChangeToneClass(value) {
-  if (value === null || value === 0) return 'is-neutral';
-  if (value > 0) return 'is-positive';
-  return 'is-negative';
-}
-
-function updateSummaryDualValue(node, appleValue, googleValue, isCount = false) {
-  node.classList.remove('is-positive', 'is-negative');
-  const appleText = formatSummaryValue(appleValue, isCount);
-  const googleText = formatSummaryValue(googleValue, isCount);
-  node.innerHTML = `<span class="${getChangeToneClass(appleValue)}">${appleText}</span> / <span class="${getChangeToneClass(googleValue)}">${googleText}</span>`;
+function renderStoreSummaryPanel(panel, title, changes) {
+  const heading = panel.querySelector('h2');
+  const values = panel.querySelectorAll('.summary-value');
+  if (heading) heading.textContent = title;
+  updateSummaryValue(values[0], changes.rating7d);
+  updateSummaryValue(values[1], changes.rating30d);
+  updateSummaryValue(values[2], changes.count7d, true);
+  updateSummaryValue(values[3], changes.count30d, true);
 }
 
 function computeChange(data, offset, key) {
@@ -198,18 +188,32 @@ function renderChart(mode = 'rating') {
 }
 
 function updateSummaries(data) {
+  const appleChanges = {
+    rating7d: computeChange(data, 7, 'averageUserRating'),
+    rating30d: computeChange(data, 30, 'averageUserRating'),
+    count7d: computeChange(data, 7, 'userRatingCount'),
+    count30d: computeChange(data, 30, 'userRatingCount')
+  };
+
   if (isGoogleMode) {
-    if (el.summaryHeading) el.summaryHeading.innerHTML = 'Change summary <span class="summary-heading-secondary">App Store / Google Play</span>';
-    updateSummaryDualValue(el.rating7d, computeChange(data, 7, 'averageUserRating'), computeChange(data, 7, 'googleRating'));
-    updateSummaryDualValue(el.rating30d, computeChange(data, 30, 'averageUserRating'), computeChange(data, 30, 'googleRating'));
-    updateSummaryDualValue(el.count7d, computeChange(data, 7, 'userRatingCount'), computeChange(data, 7, 'googleCount'), true);
-    updateSummaryDualValue(el.count30d, computeChange(data, 30, 'userRatingCount'), computeChange(data, 30, 'googleCount'), true);
+    renderStoreSummaryPanel(document.querySelector('.summary-panel'), 'App Store Change Summary', appleChanges);
+
+    const googlePanel = document.querySelector('.summary-panel').cloneNode(true);
+    renderStoreSummaryPanel(googlePanel, 'Google Play Change Summary', {
+      rating7d: computeChange(data, 7, 'googleRating'),
+      rating30d: computeChange(data, 30, 'googleRating'),
+      count7d: computeChange(data, 7, 'googleCount'),
+      count30d: computeChange(data, 30, 'googleCount')
+    });
+
+    document.querySelector('.summary-panel').after(googlePanel);
     return;
   }
-  updateSummaryValue(el.rating7d, computeChange(data, 7, 'averageUserRating'));
-  updateSummaryValue(el.rating30d, computeChange(data, 30, 'averageUserRating'));
-  updateSummaryValue(el.count7d, computeChange(data, 7, 'userRatingCount'), true);
-  updateSummaryValue(el.count30d, computeChange(data, 30, 'userRatingCount'), true);
+
+  updateSummaryValue(el.rating7d, appleChanges.rating7d);
+  updateSummaryValue(el.rating30d, appleChanges.rating30d);
+  updateSummaryValue(el.count7d, appleChanges.count7d, true);
+  updateSummaryValue(el.count30d, appleChanges.count30d, true);
 }
 
 function setMode(mode) { chartMode = mode; el.showRatingBtn.classList.toggle('is-active', mode === 'rating'); el.showCountBtn.classList.toggle('is-active', mode === 'count'); el.showRatingBtn.setAttribute('aria-selected', String(mode === 'rating')); el.showCountBtn.setAttribute('aria-selected', String(mode === 'count')); renderChart(mode); }
@@ -217,7 +221,7 @@ function showEmptyState(message) { el.chartWrapper.classList.add('hidden'); el.c
 function hideEmptyState() { el.chartWrapper.classList.remove('hidden'); el.chartEmptyState.textContent = ''; el.chartEmptyState.classList.add('hidden'); }
 
 async function init() {
-  el.chartTitle.textContent = CONFIG.dashboardTitle;
+  el.chartTitle.textContent = isGoogleMode ? 'Rating trend' : CONFIG.dashboardTitle;
   clearError();
 
   try {
