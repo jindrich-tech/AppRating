@@ -199,10 +199,9 @@ function renderChart(mode = 'rating') {
         legend: {
           display: true,
           labels: {
-            usePointStyle: true,
-            pointStyle: 'line',
-            boxWidth: 18,
-            boxHeight: 3,
+            usePointStyle: false,
+            boxWidth: 40,
+            boxHeight: 2,
             padding: 12
           }
         },
