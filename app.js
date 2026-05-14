@@ -196,7 +196,16 @@ function renderChart(mode = 'rating') {
         }
       },
       plugins: {
-        legend: { display: true },
+        legend: {
+          display: true,
+          labels: {
+            usePointStyle: true,
+            pointStyle: 'line',
+            boxWidth: 18,
+            boxHeight: 3,
+            padding: 12
+          }
+        },
         tooltip: {
           callbacks: {
             label(context) {
