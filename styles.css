@@ -131,12 +131,21 @@ h1 {
   font-weight: 700;
 }
 
+.summary-heading-secondary {
+  font-size: 0.85em;
+  font-weight: 400;
+}
+
 .is-positive {
   color: #34d399;
 }
 
 .is-negative {
   color: #f87171;
+}
+
+.is-neutral {
+  color: var(--muted);
 }
 
 .chart-header {

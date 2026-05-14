@@ -28,6 +28,8 @@ const el = {
   latestRatingLabel: document.querySelector('dd#latest-rating')?.previousElementSibling,
   latestCountLabel: document.querySelector('dd#latest-count')?.previousElementSibling,
   summaryHeading: document.querySelector('.summary-panel h2'),
+  pageHeading: document.querySelector('.page-header h1'),
+  pageSubtitle: document.querySelector('.page-header .subtitle'),
   rating7d: document.getElementById('rating-change-7d'),
   rating30d: document.getElementById('rating-change-30d'),
   count7d: document.getElementById('count-change-7d'),
@@ -65,9 +67,17 @@ function formatSummaryValue(value, isCount = false) {
   return isCount ? `${sign}${numberFormat.format(absValue)}` : `${sign}${decimalFormat.format(absValue)}`;
 }
 
+function getChangeToneClass(value) {
+  if (value === null || value === 0) return 'is-neutral';
+  if (value > 0) return 'is-positive';
+  return 'is-negative';
+}
+
 function updateSummaryDualValue(node, appleValue, googleValue, isCount = false) {
   node.classList.remove('is-positive', 'is-negative');
-  node.textContent = `${formatSummaryValue(appleValue, isCount)} / ${formatSummaryValue(googleValue, isCount)}`;
+  const appleText = formatSummaryValue(appleValue, isCount);
+  const googleText = formatSummaryValue(googleValue, isCount);
+  node.innerHTML = `<span class="${getChangeToneClass(appleValue)}">${appleText}</span> / <span class="${getChangeToneClass(googleValue)}">${googleText}</span>`;
 }
 
 function computeChange(data, offset, key) {
@@ -114,6 +124,8 @@ function updateHeader(data) {
   el.lastUpdated.textContent = formatUtcDate(latest.date);
 
   if (isGoogleMode) {
+    if (el.pageHeading) el.pageHeading.textContent = 'AppRating';
+    if (el.pageSubtitle) el.pageSubtitle.textContent = 'App rating trend for CZ region';
     if (el.latestRatingLabel) el.latestRatingLabel.textContent = 'App Store Rating';
     if (el.latestCountLabel) el.latestCountLabel.textContent = 'App Store Count';
     el.latestGoogleRatingRow.classList.remove('hidden');
@@ -187,7 +199,7 @@ function renderChart(mode = 'rating') {
 
 function updateSummaries(data) {
   if (isGoogleMode) {
-    if (el.summaryHeading) el.summaryHeading.textContent = 'Change summary App Store / Google Play';
+    if (el.summaryHeading) el.summaryHeading.innerHTML = 'Change summary <span class="summary-heading-secondary">App Store / Google Play</span>';
     updateSummaryDualValue(el.rating7d, computeChange(data, 7, 'averageUserRating'), computeChange(data, 7, 'googleRating'));
     updateSummaryDualValue(el.rating30d, computeChange(data, 30, 'averageUserRating'), computeChange(data, 30, 'googleRating'));
     updateSummaryDualValue(el.count7d, computeChange(data, 7, 'userRatingCount'), computeChange(data, 7, 'googleCount'), true);
