@@ -20,13 +20,10 @@ const el = {
   appName: document.getElementById('app-name'),
   latestRating: document.getElementById('latest-rating'),
   latestCount: document.getElementById('latest-count'),
-  latestGoogleRatingRow: document.getElementById('latest-google-rating-row'),
-  latestGoogleCountRow: document.getElementById('latest-google-count-row'),
+  metricsList: document.querySelector('.metrics-list'),
   latestGoogleRating: document.getElementById('latest-google-rating'),
   latestGoogleCount: document.getElementById('latest-google-count'),
   lastUpdated: document.getElementById('last-updated'),
-  latestRatingLabel: document.querySelector('dd#latest-rating')?.previousElementSibling,
-  latestCountLabel: document.querySelector('dd#latest-count')?.previousElementSibling,
   summaryHeading: document.querySelector('.summary-panel h2'),
   pageHeading: document.querySelector('.page-header h1'),
   pageSubtitle: document.querySelector('.page-header .subtitle'),
@@ -116,12 +113,39 @@ function updateHeader(data) {
   if (isGoogleMode) {
     if (el.pageHeading) el.pageHeading.textContent = 'AppRating';
     if (el.pageSubtitle) el.pageSubtitle.textContent = 'App rating trend for CZ region';
-    if (el.latestRatingLabel) el.latestRatingLabel.textContent = 'App Store Rating';
-    if (el.latestCountLabel) el.latestCountLabel.textContent = 'App Store Count';
-    el.latestGoogleRatingRow.classList.remove('hidden');
-    el.latestGoogleCountRow.classList.remove('hidden');
+
+    if (el.metricsList) {
+      el.metricsList.innerHTML = `
+        <div>
+          <dt>App Store rating</dt>
+          <dd id="latest-rating">—</dd>
+          <dt>Rating count</dt>
+          <dd id="latest-count">—</dd>
+        </div>
+        <div>
+          <dt>Google Play rating</dt>
+          <dd id="latest-google-rating">—</dd>
+          <dt>Rating count</dt>
+          <dd id="latest-google-count">—</dd>
+        </div>
+        <div>
+          <dt>Last updated</dt>
+          <dd id="last-updated">—</dd>
+        </div>
+      `;
+
+      el.latestRating = document.getElementById('latest-rating');
+      el.latestCount = document.getElementById('latest-count');
+      el.latestGoogleRating = document.getElementById('latest-google-rating');
+      el.latestGoogleCount = document.getElementById('latest-google-count');
+      el.lastUpdated = document.getElementById('last-updated');
+    }
+
     el.latestGoogleRating.textContent = latest.googleRating === null ? '—' : decimalFormat.format(latest.googleRating);
     el.latestGoogleCount.textContent = latest.googleCount === null ? '—' : numberFormat.format(latest.googleCount);
+    el.latestRating.textContent = decimalFormat.format(latest.averageUserRating);
+    el.latestCount.textContent = numberFormat.format(latest.userRatingCount);
+    el.lastUpdated.textContent = formatUtcDate(latest.date);
   }
 }
 
