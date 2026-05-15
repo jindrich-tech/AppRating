@@ -6,7 +6,7 @@
     "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ef/80/ea/ef80eac9-aec4-7a3b-8d42-bf3b33d9429f/AppIcon-Release-0-0-1x_U007emarketing-0-6-0-85-220.png/512x512bb.jpg",
     "averageUserRating": 3.05606,
     "userRatingCount": 1659,
-    "googleRating": 4.0,
+    "googleRating": 4,
     "googleCount": null
   },
   {
@@ -218,5 +218,15 @@
     "userRatingCount": 1761,
     "googleRating": 3.8,
     "googleCount": 5270
+  },
+  {
+    "date": "2026-05-15",
+    "appId": 1621276337,
+    "appName": "My Vodafone+",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/84/e6/94/84e69426-2050-a714-5f2a-2a5be82de377/AppIcon-Release-0-0-1x_U007emarketing-0-6-0-85-220.png/512x512bb.jpg",
+    "averageUserRating": 3.08745,
+    "userRatingCount": 1761,
+    "googleRating": 3.8,
+    "googleCount": 5280
   }
 ]
