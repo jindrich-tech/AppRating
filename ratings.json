@@ -1478,5 +1478,15 @@
     "userRatingCount": 2368,
     "googleRating": 3.6,
     "googleCount": 6650
+  },
+  {
+    "date": "2026-09-18",
+    "appId": 1621276337,
+    "appName": "My Vodafone+",
+    "iconUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ae/c8/8c/aec88c05-e117-9bc4-a2e4-a75626533594/AppIcon-Release-0-0-1x_U007emarketing-0-6-0-85-220.png/512x512bb.jpg",
+    "averageUserRating": 3.17375,
+    "userRatingCount": 2377,
+    "googleRating": 3.6,
+    "googleCount": 6670
   }
 ]
